@@ -1,4 +1,5 @@
 ﻿using DogFetchApp.ViewModels;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace DogFetchApp
@@ -9,15 +10,17 @@ namespace DogFetchApp
     public partial class MainWindow : Window
     {
         MainViewModel currentViewmodel;
-        
+       
+
         public MainWindow()
         {
             InitializeComponent();
             ApiHelper.ApiHelper.InitializeClient();
-
             currentViewmodel = new MainViewModel();
-
             DataContext = currentViewmodel;
+            Task.Run(() => currentViewmodel.LoadBreedList());
+
         }
+          
     }
 }

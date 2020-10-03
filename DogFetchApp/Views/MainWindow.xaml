@@ -47,13 +47,8 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Column="0" Grid.Row="0" Text="Breed : "/>
-            <ComboBox Grid.Column="1" Grid.Row="0">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+            <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding Breeds}"/>
+            
             <TextBlock Grid.Row="1" Text="Nombre de photos :"/>
             <ComboBox Grid.Row="1" Grid.Column="1">
                 <ComboBoxItem Content="1"/>
