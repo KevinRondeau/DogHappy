@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Net.Http.Headers;
 
-namespace ApiHelper
+namespace DogFetchApp.Helper
 {
     public static class ApiHelper
     {

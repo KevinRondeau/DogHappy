@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DogFetchApp
+namespace DogFetchApp.Models
 {
-    class DogModel
+    public class DogModel
     {
-        [JsonProperty("message")] public Dictionary<string, List<string>> Breed { get; set; }
+        [JsonProperty("message")] public string DogPicture { get; set; }
     }
 }
