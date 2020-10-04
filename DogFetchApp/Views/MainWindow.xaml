@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DogFetchApp"
         xmlns:p="clr-namespace:DogFetchApp.Properties"
         mc:Ignorable="d"
-        Title="Dog picture fetcher" Height="450" Width="800">
+        Title="Dog picture fetcher" Height="800" Width="800">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="5"/>
@@ -22,8 +22,8 @@
         <Menu DockPanel.Dock="Top">
             <MenuItem x:Name="headerPick" Header="{x:Static p:Resources.headerPick}">
                 <MenuItem x:Name="Languages" Header="{x:Static p:Resources.Languages}">
-                    <MenuItem x:Name="French" Header="{x:Static p:Resources.French}"/>
-                    <MenuItem x:Name="English" Header="{x:Static p:Resources.English}"/>
+                    <MenuItem x:Name="French" Command="{Binding changeLanguageFrCommand}" Header="{x:Static p:Resources.French}"/>
+                    <MenuItem x:Name="English" Command="{Binding changeLanguageEnCommand}" Header="{x:Static p:Resources.English}"/>
                 </MenuItem>
             </MenuItem>
         </Menu>
@@ -62,7 +62,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <ScrollViewer CanContentScroll="True"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <ScrollViewer  IsEnabled="True">
                 <ListView Grid.Row="0" ItemsSource="{Binding Images}" >
                         <ItemsControl.ItemsPanel >
                         <ItemsPanelTemplate>
@@ -74,7 +74,7 @@
                         <ListView.ItemTemplate >
                         <DataTemplate>
                             <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                <Image Source="{Binding}" Height="350" Width="350" HorizontalAlignment="Stretch" VerticalAlignment="Top" Stretch="UniformToFill"/>
+                                <Image Source="{Binding}" Height="250" Width="350" HorizontalAlignment="Stretch" VerticalAlignment="Top" Stretch="UniformToFill"/>
                                 <!--<TextBlock Text="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" />-->
                             </StackPanel>
                         </DataTemplate>
@@ -82,10 +82,12 @@
                    
                 </ListView>
                 </ScrollViewer>
+                <!--
                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
                     <Button x:Name="PrevBtn" Content="{x:Static p:Resources.PrevBtn}" Margin="10"/>
                     <Button x:Name="NextBtn" Content="{x:Static p:Resources.NextBtn}" Command="{Binding NextImageCommand}" Margin="10"/>
                 </StackPanel>
+                -->
             </Grid>
         </Grid>
     </DockPanel>

@@ -5,6 +5,8 @@ using DogFetchApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,7 +26,9 @@ namespace DogFetchApp.ViewModels
 
         public AsyncCommand<object> FetchImageCommand { get; private set; }
         public AsyncCommand<object> NextImageCommand { get; private set; }
-
+        public DelegateCommand<object> restartCommand { get; private set; }
+        public DelegateCommand<object> changeLanguageEnCommand { get; private set; }
+        public DelegateCommand<object> changeLanguageFrCommand { get; private set; }
         public string SelectedBreed
         {
             get => selectedBreed;
@@ -88,6 +92,9 @@ namespace DogFetchApp.ViewModels
             Images=new ObservableCollection<string>();
             FetchImageCommand = new AsyncCommand<object>(FetchImageAsync);
             NextImageCommand = new AsyncCommand<object>(NextImageAsync);
+            restartCommand = new DelegateCommand<object>(Restart, CanRestart);
+            changeLanguageEnCommand = new DelegateCommand<object>(changeLanguageEn, CanChangeLanguage);
+            changeLanguageFrCommand = new DelegateCommand<object>(changeLanguageFr, CanChangeLanguage);
         }
 
         public async Task LoadBreedList()
@@ -123,6 +130,60 @@ namespace DogFetchApp.ViewModels
             }
 
         }
+
+        public void Restart(object arg)
+        {
+
+            var filename = Application.ResourceAssembly.Location;
+            var newFile = Path.ChangeExtension(filename, ".exe");
+            Process.Start(newFile);
+            Application.Current.Shutdown();
+        }
+        private bool CanRestart(object arg) => true;
+
+        private void changeLanguageEn(object arg)
+        {
+            string param = Properties.Settings.Default.Language;
+            if (param == "en")
+            {
+                MessageBoxResult messageErrorBoxResult = System.Windows.MessageBox.Show("Already in english");
+            }
+            else
+            {
+
+
+                MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Changer le language pour l'anglais?","Language", System.Windows.MessageBoxButton.YesNo);
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+                        Properties.Settings.Default.Language = "en";
+                  
+                        Properties.Settings.Default.Save();
+                        Restart(arg);
+                }
+            }
+        }
+        private void changeLanguageFr(object arg)
+        {
+            string param = Properties.Settings.Default.Language;
+            if (param == "fr")
+            {
+                MessageBoxResult messageErrorBoxResult = System.Windows.MessageBox.Show("Deja en francais!");
+            }
+            else
+            {
+
+
+                MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Change language to french?", "Language", System.Windows.MessageBoxButton.YesNo);
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+                    Properties.Settings.Default.Language = "fr";
+
+                    Properties.Settings.Default.Save();
+                    Restart(arg);
+                }
+            }
+        }
+        private bool CanChangeLanguage(object arg) => true;
     }
     
 }
