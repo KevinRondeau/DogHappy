@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DogFetchApp"
         xmlns:p="clr-namespace:DogFetchApp.Properties"
         mc:Ignorable="d"
-        Title="Dog picture fetcher" Height="800" Width="800">
+        Title="Dog picture fetcher" Height="800" Width="800" ResizeMode="NoResize">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="5"/>
