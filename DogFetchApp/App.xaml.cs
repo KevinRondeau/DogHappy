@@ -12,6 +12,7 @@ namespace DogFetchApp
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
+    /// Athor: Kevin Rondeau
     public partial class App : Application
     {
         public App()

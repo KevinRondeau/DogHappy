@@ -82,12 +82,12 @@
                    
                 </ListView>
                 </ScrollViewer>
-                <!--
+                
                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
                     <Button x:Name="PrevBtn" Content="{x:Static p:Resources.PrevBtn}" Margin="10"/>
                     <Button x:Name="NextBtn" Content="{x:Static p:Resources.NextBtn}" Command="{Binding NextImageCommand}" Margin="10"/>
                 </StackPanel>
-                -->
+               
             </Grid>
         </Grid>
     </DockPanel>
